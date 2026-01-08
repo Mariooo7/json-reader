@@ -2,8 +2,6 @@
 
 A minimalist, fast, and elegant local application for visualizing and reading JSON data.
 
-![JSON Reader Preview](./public/preview.png)
-
 ## ✨ Features
 
 - **Smart Extraction**: Automatically extracts multiple JSON blocks from mixed text (logs, prompts, code).
