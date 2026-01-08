@@ -1,8 +1,8 @@
 {
   "$schema": "../node_modules/@tauri-apps/cli/config.schema.json",
-  "productName": "json-reader",
-  "version": "0.1.0",
-  "identifier": "com.tauri.dev",
+  "productName": "JSON Reader",
+  "version": "1.0.0",
+  "identifier": "com.jsonreader.app",
   "build": {
     "frontendDist": "../dist",
     "devUrl": "http://localhost:3000",
