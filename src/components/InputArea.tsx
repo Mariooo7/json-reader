@@ -2,13 +2,11 @@ import React, { useCallback } from 'react';
 import Editor from 'react-simple-code-editor';
 import Prism from 'prismjs';
 import 'prismjs/components/prism-json';
-import 'prismjs/themes/prism-tomorrow.css'; // 使用适合深色模式的主题
+import 'prismjs/themes/prism-tomorrow.css';
 import { useAppStore } from '../store/useAppStore';
-import { useTheme } from '../hooks/useTheme';
 
 export const InputArea: React.FC = () => {
   const { inputText, setInputText } = useAppStore();
-  const { isDark } = useTheme();
 
   const handlePaste = useCallback((e: React.ClipboardEvent) => {
     // 获取粘贴的文本
@@ -48,35 +46,20 @@ export const InputArea: React.FC = () => {
           padding={16}
           onPaste={handlePaste}
           textareaClassName="focus:outline-none"
-          className="font-mono text-sm min-h-full"
+          // 添加 prism-editor-wrapper 类名以匹配 CSS 选择器
+          className="font-mono text-sm min-h-full prism-editor-wrapper"
           style={{
             fontFamily: '"Fira Code", "Fira Mono", monospace',
             fontSize: 14,
             backgroundColor: 'transparent',
-            color: isDark ? '#f8f8f2' : '#2d2d2d', // 根据主题调整文字颜色
+            // 使用 CSS 变量，让浏览器自动处理颜色切换
+            color: 'hsl(var(--foreground))',
           }}
         />
-        {/* 覆盖 Prism 默认的背景色，让它透明以便适应我们的主题 */}
         <style>{`
           .prism-editor-textarea {
              outline: none !important;
           }
-          /* 调整 token 颜色以适应亮色模式，如果需要的话 */
-          ${!isDark ? `
-            code[class*="language-"], pre[class*="language-"] {
-              text-shadow: none !important;
-              color: #2d2d2d !important;
-            }
-            .token.operator, .token.entity, .token.url, .language-css .token.string, .style .token.string {
-              color: #a67f59 !important;
-            }
-            .token.string {
-              color: #690 !important;
-            }
-            .token.number {
-              color: #905 !important;
-            }
-          ` : ''}
         `}</style>
       </div>
     </div>

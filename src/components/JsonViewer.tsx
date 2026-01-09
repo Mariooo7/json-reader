@@ -52,9 +52,9 @@ const JsonBlockCard: React.FC<{ block: any, index: number }> = ({ block, index }
 
   const toggleExpandAll = (e: React.MouseEvent) => {
     e.stopPropagation();
-    // Toggle between collapsed (0) and fully expanded (10)
-    // Or just increment level? Let's simplify: Toggle All vs Collapse All
-    setExpandAllLevel(prev => prev > 0 ? 0 : 10);
+    // If currently 1 (default) or 0 (collapsed), expand all (10)
+    // If currently > 1 (expanded), collapse all (0)
+    setExpandAllLevel(prev => prev > 1 ? 0 : 10);
   };
 
   return (
@@ -79,9 +79,9 @@ const JsonBlockCard: React.FC<{ block: any, index: number }> = ({ block, index }
           <button
             onClick={toggleExpandAll}
             className="p-1.5 rounded-md hover:bg-background text-muted-foreground hover:text-foreground transition-colors mr-2"
-            title={expandAllLevel > 0 ? "Collapse All" : "Expand All"}
+            title={expandAllLevel > 1 ? "Collapse All" : "Expand All"}
           >
-            {expandAllLevel > 0 ? <Minimize2 size={14} /> : <Maximize2 size={14} />}
+            {expandAllLevel > 1 ? <Minimize2 size={14} /> : <Maximize2 size={14} />}
           </button>
 
           <div className="h-4 w-px bg-border mx-1" />

@@ -97,8 +97,40 @@
   .dark .custom-scrollbar::-webkit-scrollbar-thumb {
     @apply bg-muted-foreground/30;
   }
+}
 
-  .dark .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-    @apply bg-muted-foreground/50;
-  }
+/* Prism Light Theme Overrides */
+/* 仅在非 Dark 模式下应用，强制覆盖 prism-tomorrow 的深色样式 */
+:root:not(.dark) .prism-editor-wrapper code[class*="language-"],
+:root:not(.dark) .prism-editor-wrapper pre[class*="language-"] {
+  text-shadow: none !important;
+  color: hsl(var(--foreground)) !important; /* 使用主题文字颜色 */
+}
+
+:root:not(.dark) .prism-editor-wrapper .token.operator,
+:root:not(.dark) .prism-editor-wrapper .token.entity,
+:root:not(.dark) .prism-editor-wrapper .token.url,
+:root:not(.dark) .prism-editor-wrapper .language-css .token.string,
+:root:not(.dark) .prism-editor-wrapper .style .token.string {
+  color: #a67f59 !important;
+}
+
+:root:not(.dark) .prism-editor-wrapper .token.string {
+  color: #690 !important;
+}
+
+:root:not(.dark) .prism-editor-wrapper .token.number {
+  color: #905 !important;
+}
+
+:root:not(.dark) .prism-editor-wrapper .token.keyword {
+  color: #07a !important;
+}
+
+:root:not(.dark) .prism-editor-wrapper .token.boolean {
+  color: #905 !important;
+}
+
+:root:not(.dark) .prism-editor-wrapper .token.function {
+  color: #dd4a68 !important;
 }
